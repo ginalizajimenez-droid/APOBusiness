@@ -253,16 +253,26 @@ const catMap = {
 
 function getCategory(type) {
   const t = (type || '').toLowerCase();
-  if (t.includes('health') || t.includes('clinic') || t.includes('medical') || t.includes('dental') || t.includes('ultrasound') || t.includes('pharmacy') || t.includes('veterinary') || t.includes('wellness') || t.includes('surgery') || t.includes('therapy')) return 'health';
-  if (t.includes('construction') || t.includes('engineering') || t.includes('architectural') || t.includes('solar') || t.includes('hvac') || t.includes('electrical') || t.includes('renovation') || t.includes('builder') || t.includes('structure') || t.includes('manufacturing') || t.includes('ice') || t.includes('fire alarm') || t.includes('whole trade')) return 'construction';
-  if (t.includes('hotel') || t.includes('accommodation') || t.includes('hostel') || t.includes('inn') || t.includes('lodg') || t.includes('resort') || t.includes('bed and breakfast')) return 'hotel';
+  // Health — clinics, medical, wellness (checked first, most specific)
+  if (t.includes('health') || t.includes('clinic') || t.includes('medical') || t.includes('dental') || t.includes('ultrasound') || t.includes('pharmacy') || t.includes('veterinary') || t.includes('wellness') || t.includes('surgery') || t.includes('therapy') || t.includes('diagnostic')) return 'health';
+  // Hotel & Accommodation
+  if (t.includes('hotel') || t.includes('accommodation') || t.includes('hostel') || t.includes('resort') || t.includes('bed and breakfast') || t.includes('lodging')) return 'hotel';
+  // Insurance & Brokerage — before real estate to avoid overlap
   if (t.includes('insurance') || t.includes('brokerage') || t.includes('broker')) return 'insurance';
-  if (t.includes('real estate') || t.includes('condo') || t.includes('house') || t.includes('property') || t.includes('rental') || t.includes('airbnb') || t.includes('reit')) return 'realestate';
-  if (t.includes('legal') || t.includes('law') || t.includes('accounting') || t.includes('consulting') || t.includes('professional') || t.includes('security') || t.includes('network') || t.includes('it ')) return 'legal';
-  if (t.includes('education') || t.includes('tutorial') || t.includes('training') || t.includes('bootcamp') || t.includes('upskill') || t.includes('workshop') || t.includes('art ') || t.includes('early childhood')) return 'education';
-  if (t.includes('food') || t.includes('grilled') || t.includes('oyster') || t.includes('chicken') || t.includes('bilao') || t.includes('scallop') || t.includes('restaurant')) return 'food';
-  if (t.includes('retail') || t.includes('gadget') || t.includes('phone') || t.includes('apparel') || t.includes('floral') || t.includes('flower') || t.includes('pet') || t.includes('supply') || t.includes('trading') || t.includes('e-commerce') || t.includes('printing') || t.includes('publishing') || t.includes('audio') || t.includes('lights') || t.includes('sound')) return 'retail';
+  // Real Estate — property, condo, house sales (not construction)
+  if (t.includes('real estate') || t.includes('condo') || t.includes('property management') || t.includes('airbnb') || t.includes('reit') || t.includes('residential sales') || t.includes('commercial leasing')) return 'realestate';
+  // Construction & Trades — must mention construction/engineering/renovation explicitly
+  if (t.includes('construction') || t.includes('architectural') || t.includes('renovation') || t.includes('green building') || t.includes('general contracting') || t.includes('hvac') || t.includes('solar power') || t.includes('manufacturing') || t.includes('fire alarm') || t.includes('whole trade') || t.includes('structural')) return 'construction';
+  // Professional Services — legal, accounting, IT, security
+  if (t.includes('legal') || t.includes('law office') || t.includes('accounting') || t.includes('professional services') || t.includes('it consulting') || t.includes('security and network') || t.includes('hr consulting')) return 'legal';
+  // Education
+  if (t.includes('education') || t.includes('tutorial') || t.includes('training') || t.includes('bootcamp') || t.includes('upskill') || t.includes('workshop') || t.includes('early childhood') || t.includes('learning hub')) return 'education';
+  // Food & Drinks
+  if (t.includes('food') || t.includes('grilled') || t.includes('oyster') || t.includes('chicken') || t.includes('bilao') || t.includes('scallop') || t.includes('restaurant') || t.includes('catering') || t.includes('drinks')) return 'food';
+  // Travel
   if (t.includes('travel') || t.includes('tour')) return 'travel';
+  // Retail & Commerce — gadgets, flowers, supplies, e-commerce
+  if (t.includes('retail') || t.includes('gadget') || t.includes('phones') || t.includes('apparel') || t.includes('floral') || t.includes('flower') || t.includes('supply') || t.includes('trading') || t.includes('e-commerce') || t.includes('printing') || t.includes('audio') || t.includes('lights rental') || t.includes('led')) return 'retail';
   return 'other';
 }
 
