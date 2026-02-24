@@ -338,13 +338,19 @@ function setFilter(btn, type) {
 
 const SHEET_CSV = 'https://docs.google.com/spreadsheets/d/1UmnoPCJYK2cuk5qm5fwKuxoG99g5cZgv92SRUiW6UGw/export?format=csv&gid=0';
 
+function deriveArea(loc) {
+  if (!loc) return '';
+  const parts = loc.split(',').map(s => s.trim()).filter(Boolean);
+  return parts.length > 1 ? parts[parts.length - 1] : parts[0];
+}
+
 function mapRow(headers, cols) {
   const r = {};
   headers.forEach((h, i) => r[h.trim()] = (cols[i] || '').replace(/^"|"$/g,'').trim());
   return {
     name:     r['Name of Business'] || r['Business Name'] || '',
     owner:    r['Full Name'] || r['Owner Name'] || r['Owner'] || '',
-    area:     r['Area'] || '',
+    area:     r['Area'] || r['Area / Location'] || r['Region'] || r['Province'] || r['City'] || deriveArea(r['Location'] || ''),
     location: r['Location'] || '',
     type:     r['Type of Business'] || r['Type'] || '',
     chapter:  r['Chapter'] || '',
