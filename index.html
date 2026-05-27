@@ -311,7 +311,7 @@ function render() {
         <div class="type-tag">${info.icon} ${esc(shortType)}</div>
         <div class="card-name">${esc(b.name)}</div>
         ${b.description ? `<div class="card-desc">${esc(b.description)}</div>` : ''}
-        <div class="card-meta"><span class="icon">👤</span><span>Owner: <strong>${esc(b.owner)}</strong></span></div>
+        <!-- Owner hidden -->
         <div class="card-area">🗺️ ${esc(b.area)}</div>
         <div class="card-meta"><span class="icon">📍</span><span>${esc(b.location)}</span></div>
         <div class="card-divider"></div>
@@ -321,7 +321,7 @@ function render() {
           ${b.facebook ? `<div class="card-link">📘 <a href="${b.facebook.startsWith('http') ? esc(b.facebook) : 'https://facebook.com/' + esc(b.facebook)}" target="_blank">Facebook Page</a></div>` : ''}
         </div>
         <div class="card-footer" style="margin-top:10px;">
-          <div class="chapter-badge">Ch. ${esc(b.chapter)}</div>
+          <!-- Chapter hidden -->
         </div>
       </div>
     </div>`;
