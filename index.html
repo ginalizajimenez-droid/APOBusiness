@@ -166,35 +166,6 @@
     .grid { grid-template-columns:1fr; }
   }
 
-  /* Password Screen */
-  #password-screen {
-    position:fixed; inset:0; background:var(--blue);
-    display:flex; align-items:center; justify-content:center;
-    z-index:9999; flex-direction:column; gap:0;
-  }
-  .pw-box {
-    background:white; border-radius:18px; padding:48px 40px 40px;
-    max-width:420px; width:90%; box-shadow:0 8px 40px rgba(0,0,0,0.25);
-    text-align:center;
-  }
-  .pw-logo { font-size:48px; margin-bottom:12px; }
-  .pw-title { font-size:22px; font-weight:800; color:var(--blue); margin-bottom:4px; font-family:Georgia,serif; }
-  .pw-subtitle { font-size:13px; color:var(--muted); margin-bottom:28px; }
-  .pw-input {
-    width:100%; padding:12px 16px; border:2px solid var(--border);
-    border-radius:10px; font-size:16px; outline:none; box-sizing:border-box;
-    margin-bottom:12px; text-align:center; letter-spacing:3px;
-  }
-  .pw-input:focus { border-color:var(--blue); }
-  .pw-btn {
-    width:100%; padding:13px; background:var(--blue); color:white;
-    border:none; border-radius:10px; font-size:15px; font-weight:700;
-    cursor:pointer; transition:background 0.2s;
-  }
-  .pw-btn:hover { background:#1a1a99; }
-  .pw-error { color:#e74c3c; font-size:13px; margin-top:8px; display:none; }
-  .pw-note { font-size:11px; color:var(--muted); margin-top:16px; line-height:1.6; }
-
   /* Privacy Notice Banner */
   #privacy-banner {
     background:#fff8e1; border-bottom:2px solid var(--gold-dark);
@@ -223,6 +194,36 @@
     color:white; border:none; border-radius:8px; font-size:14px;
     font-weight:700; cursor:pointer;
   }
+
+
+  /* Password Screen */
+  #password-screen {
+    position:fixed; inset:0; background:var(--blue);
+    display:flex; align-items:center; justify-content:center;
+    z-index:9999; flex-direction:column; gap:0;
+  }
+  .pw-box {
+    background:white; border-radius:18px; padding:48px 40px 40px;
+    max-width:420px; width:90%; box-shadow:0 8px 40px rgba(0,0,0,0.25);
+    text-align:center;
+  }
+  .pw-logo { font-size:48px; margin-bottom:12px; }
+  .pw-title { font-size:22px; font-weight:800; color:var(--blue); margin-bottom:4px; font-family:Georgia,serif; }
+  .pw-subtitle { font-size:13px; color:var(--muted); margin-bottom:28px; }
+  .pw-input {
+    width:100%; padding:12px 16px; border:2px solid var(--border);
+    border-radius:10px; font-size:16px; outline:none; box-sizing:border-box;
+    margin-bottom:12px; text-align:center; letter-spacing:3px;
+  }
+  .pw-input:focus { border-color:var(--blue); }
+  .pw-btn {
+    width:100%; padding:13px; background:var(--blue); color:white;
+    border:none; border-radius:10px; font-size:15px; font-weight:700;
+    cursor:pointer; transition:background 0.2s;
+  }
+  .pw-btn:hover { background:#1a1a99; }
+  .pw-error { color:#e74c3c; font-size:13px; margin-top:8px; display:none; }
+  .pw-note { font-size:11px; color:var(--muted); margin-top:16px; line-height:1.6; }
 
 </style>
 </head>
@@ -473,6 +474,14 @@ function updateStats(data) {
 }
 
 loadLiveData();
+
+}
+
+// Check if already authenticated this session
+if (sessionStorage.getItem('apo_auth') === '1') {
+  document.getElementById('password-screen').style.display = 'none';
+}
+
 
 // Password protection
 const APO_PASSWORD = 'APO2026PH';
