@@ -194,9 +194,25 @@
     color:white; border:none; border-radius:8px; font-size:14px;
     font-weight:700; cursor:pointer;
   }
+
+  /* Disclaimer Banner */
+  #disclaimer-banner {
+    background:#fff4e5; border-bottom:2px solid #d97706;
+    padding:14px 24px; font-size:12.5px; color:#7c4a03; line-height:1.6;
+  }
+  #disclaimer-banner strong { color:#5a3700; }
+  .disclaimer-title { font-weight:800; font-size:13px; margin-bottom:4px; display:flex; align-items:center; gap:6px; }
+  .disclaimer-dismiss { float:right; cursor:pointer; font-weight:700; color:#a0723a; font-size:16px; margin-left:12px; }
 </style>
 </head>
 <body>
+
+<div id="disclaimer-banner">
+  <span class="disclaimer-dismiss" onclick="document.getElementById('disclaimer-banner').style.display='none'">✕</span>
+  <div class="disclaimer-title">⚠️ Important Notice: Independent Businesses / No APO Endorsement</div>
+  Businesses listed in this Directory are independently owned and operated by individual APO members. Inclusion does not constitute endorsement, accreditation, sponsorship, partnership, joint venture, or agency relationship with Alpha Phi Omega Philippines, Inc. ("APO"). No listed business or individual is authorized to act as APO's agent or representative or to bind APO. All transactions and engagements are solely between the parties involved. APO assumes no liability for any loss, damage, dispute, or claim arising from any transaction, representation, or engagement involving any listed business.
+</div>
+
 
 <div class="gold-stripe"></div>
 <header>
