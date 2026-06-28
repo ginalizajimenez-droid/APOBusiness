@@ -203,9 +203,53 @@
   #disclaimer-banner strong { color:#5a3700; }
   .disclaimer-title { font-weight:800; font-size:13px; margin-bottom:4px; display:flex; align-items:center; gap:6px; }
   .disclaimer-dismiss { float:right; cursor:pointer; font-weight:700; color:#a0723a; font-size:16px; margin-left:12px; }
+
+  /* Password Screen */
+  #password-screen {
+    position:fixed; inset:0; background:var(--blue);
+    display:flex; align-items:center; justify-content:center;
+    z-index:9999;
+  }
+  .pw-box {
+    background:white; border-radius:18px; padding:48px 40px 40px;
+    max-width:420px; width:90%; box-shadow:0 8px 40px rgba(0,0,0,0.25);
+    text-align:center;
+  }
+  .pw-logo { font-size:48px; margin-bottom:12px; }
+  .pw-title { font-size:22px; font-weight:800; color:var(--blue); margin-bottom:4px; font-family:Georgia,serif; }
+  .pw-subtitle { font-size:13px; color:var(--muted); margin-bottom:28px; }
+  .pw-input {
+    width:100%; padding:12px 16px; border:2px solid var(--border);
+    border-radius:10px; font-size:16px; outline:none; box-sizing:border-box;
+    margin-bottom:12px; text-align:center; letter-spacing:3px;
+  }
+  .pw-input:focus { border-color:var(--blue); }
+  .pw-btn {
+    width:100%; padding:13px; background:var(--blue); color:white;
+    border:none; border-radius:10px; font-size:15px; font-weight:700;
+    cursor:pointer; transition:background 0.2s;
+  }
+  .pw-btn:hover { background:#1a1a99; }
+  .pw-error { color:#e74c3c; font-size:13px; margin-top:8px; display:none; }
+  .pw-note { font-size:11px; color:var(--muted); margin-top:16px; line-height:1.6; }
 </style>
 </head>
 <body>
+
+<!-- PASSWORD SCREEN -->
+<div id="password-screen">
+  <div class="pw-box">
+    <div class="pw-logo">🔐</div>
+    <div class="pw-title">Alpha Phi Omega Philippines</div>
+    <div class="pw-subtitle">Business Directory — Members Only</div>
+    <input type="password" class="pw-input" id="pw-input" placeholder="Enter password"
+      onkeydown="if(event.key==='Enter') checkPassword()" />
+    <button class="pw-btn" onclick="checkPassword()">Access Directory</button>
+    <div class="pw-error" id="pw-error">❌ Incorrect password. Please try again.</div>
+    <div class="pw-note">This directory is for Alpha Phi Omega Philippines members only.<br>Contact the National Office for the password.</div>
+  </div>
+</div>
+
 
 <div id="disclaimer-banner">
   <span class="disclaimer-dismiss" onclick="document.getElementById('disclaimer-banner').style.display='none'">✕</span>
@@ -458,6 +502,25 @@ function updateStats(data) {
 }
 
 loadLiveData();
+
+// Password protection
+const APO_PASSWORD = 'APO2026PH';
+
+function checkPassword() {
+  const val = document.getElementById('pw-input').value;
+  if (val === APO_PASSWORD) {
+    document.getElementById('password-screen').style.display = 'none';
+    sessionStorage.setItem('apo_auth', '1');
+  } else {
+    document.getElementById('pw-error').style.display = 'block';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-input').focus();
+  }
+}
+
+if (sessionStorage.getItem('apo_auth') === '1') {
+  document.getElementById('password-screen').style.display = 'none';
+}
 </script>
 </body>
 </html>
