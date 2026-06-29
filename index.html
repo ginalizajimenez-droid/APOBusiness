@@ -149,6 +149,9 @@
   .c-other        .card-accent { background:#7f8c8d; } .c-other        .type-tag { background:#f2f3f4; color:#5d6d7e; }
   .c-hotel        .card-accent { background:#c0392b; } .c-hotel        .type-tag { background:#fdecea; color:#962d22; }
   .c-insurance    .card-accent { background:#1a5276; } .c-insurance    .type-tag { background:#e8f0f8; color:#1a5276; }
+  .c-printing     .card-accent { background:#8e44ad; } .c-printing     .type-tag { background:#f4e9f8; color:#6c3483; }
+  .c-homegarden   .card-accent { background:#229954; } .c-homegarden   .type-tag { background:#e9f7ef; color:#1d7a44; }
+  .c-automotive   .card-accent { background:#34495e; } .c-automotive   .type-tag { background:#eaeded; color:#2c3e50; }
 
   .no-results { grid-column:1/-1; text-align:center; padding:60px; color:var(--muted); font-size:15px; }
 
@@ -302,6 +305,9 @@
       <button class="filter-btn" onclick="setFilter(this,'travel')">✈️ Travel</button>
       <button class="filter-btn" onclick="setFilter(this,'hotel')">🏨 Hotel & Accommodation</button>
       <button class="filter-btn" onclick="setFilter(this,'insurance')">🛡 Insurance/Brokerage</button>
+      <button class="filter-btn" onclick="setFilter(this,'printing')">🖨 Printing & Publishing</button>
+      <button class="filter-btn" onclick="setFilter(this,'homegarden')">🏡 Home & Garden</button>
+      <button class="filter-btn" onclick="setFilter(this,'automotive')">🚗 Automotive</button>
       <button class="filter-btn" onclick="setFilter(this,'other')">➕ Other</button>
     </div>
   </div>
@@ -332,6 +338,9 @@ const catMap = {
   legal:        { label:'Professional Services',   icon:'⚖️' },
   hotel:        { label:'Hotel & Accommodation',    icon:'🏨' },
   insurance:    { label:'Insurance & Brokerage',     icon:'🛡' },
+  printing:     { label:'Printing & Publishing',     icon:'🖨' },
+  homegarden:   { label:'Home & Garden',             icon:'🏡' },
+  automotive:   { label:'Automotive',                icon:'🚗' },
   education:    { label:'Education & Training',    icon:'📚' },
   food:         { label:'Food & Drinks',            icon:'🍽' },
   retail:       { label:'Retail & Commerce',        icon:'🛍' },
@@ -357,10 +366,16 @@ function getCategory(type) {
   if (t.includes('education') || t.includes('tutorial') || t.includes('training') || t.includes('bootcamp') || t.includes('upskill') || t.includes('workshop') || t.includes('early childhood') || t.includes('learning hub')) return 'education';
   // Food & Drinks
   if (t.includes('food') || t.includes('grilled') || t.includes('oyster') || t.includes('chicken') || t.includes('bilao') || t.includes('scallop') || t.includes('restaurant') || t.includes('catering') || t.includes('drinks')) return 'food';
+  // Printing & Publishing
+  if (t.includes('printing') || t.includes('publishing') || t.includes('print shop') || t.includes('tarpaulin') || t.includes('signage') || t.includes('layout') || t.includes('graphic design')) return 'printing';
+  // Home & Garden
+  if (t.includes('home and garden') || t.includes('home & garden') || t.includes('gardening') || t.includes('landscaping') || t.includes('furniture') || t.includes('home decor') || t.includes('plants') || t.includes('interior design') || t.includes('home improvement') || t.includes('appliance')) return 'homegarden';
+  // Automotive
+  if (t.includes('automotive') || t.includes('auto repair') || t.includes('car wash') || t.includes('car shop') || t.includes('motor') || t.includes('vehicle') || t.includes('tire') || t.includes('auto parts') || t.includes('car rental')) return 'automotive';
   // Travel
   if (t.includes('travel') || t.includes('tour')) return 'travel';
   // Retail & Commerce — gadgets, flowers, supplies, e-commerce
-  if (t.includes('retail') || t.includes('gadget') || t.includes('phones') || t.includes('apparel') || t.includes('floral') || t.includes('flower') || t.includes('supply') || t.includes('trading') || t.includes('e-commerce') || t.includes('printing') || t.includes('audio') || t.includes('lights rental') || t.includes('led')) return 'retail';
+  if (t.includes('retail') || t.includes('gadget') || t.includes('phones') || t.includes('apparel') || t.includes('floral') || t.includes('flower') || t.includes('supply') || t.includes('trading') || t.includes('e-commerce') || t.includes('audio') || t.includes('lights rental') || t.includes('led')) return 'retail';
   return 'other';
 }
 
